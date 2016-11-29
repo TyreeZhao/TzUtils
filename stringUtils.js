@@ -1,3 +1,13 @@
+*
+ * Truncate a string if too long
+ * @param s {string}
+ * @param n {number}
+ * @returns {string}
+ */
+function truncString(s, n) {
+  return s.substr(0, n - 1) + (s.length > n ? '...' : '')
+}
+
 /**
  *convert a string to decimalFormat 
  *@param s {string}
