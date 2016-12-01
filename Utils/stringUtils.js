@@ -29,3 +29,37 @@ function stringWithDecimalFormat(s) {
   return str.substr(0, position) + '.' + str.substr(position)
 }
 
+
+/**
+ * when u enter a demcimalCount with string
+ * And you want output a price string in Cent, maybe this func is doing well.
+ * @param  value {string}
+ * @return {string}
+ */
+function removeFrontZero(v){
+  return v.replace(/\b(0+)/gi,"")
+}
+
+export function priceStringInCent(price) {
+  let priceInCent
+  if (price.indexOf('.') !== -1) {
+    let value = price.replace(/^0+\./g,'0.')
+    let decimalCount = value.length - value.indexOf('.') - 1
+    if (decimalCount > 2) {
+      priceInCent = parseFloat(value).toFixed(2).split('.').join('')
+    }
+    else if (decimalCount < 1) {
+      priceInCent = value.split('.').join('') + '00'
+    }
+    else if (decimalCount === 1) {
+      priceInCent = value.split('.').join('') + '0'
+    }
+    else if (decimalCount === 2){
+      priceInCent = value.split('.').join('')
+    }
+    return removeFrontZero(priceInCent)
+  } else {
+    let value = price.replace(/\b(0+)/gi,"")
+    return value + '00'
+  }
+}
