@@ -1,4 +1,3 @@
-
 import Emitter from 'es6-event-emitter'
 import { searchSliceIndexByName } from './sliceUtils'
 
