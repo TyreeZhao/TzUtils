@@ -1,5 +1,3 @@
-
-
  import Raven from 'raven-js';
  import { sentryDSN } from '../config'
  import { ENV } from '../config/env'
