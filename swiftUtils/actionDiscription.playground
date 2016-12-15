@@ -1,0 +1,55 @@
+//: Playground - noun: a place where people can play
+
+import UIKit
+
+var str = "$小王$是个2b，是个2b， #但是#她们的妹妹都$很漂亮$，#而且#$不是一般的漂亮！$"
+
+let originString = str
+let attributedArray = originString.componentsSeparatedByString("#")
+
+var stringArray = [String]()
+var postionArray = [Int]()
+var JArray = [Int]()
+var DArray = [Int]()
+
+for i in 0 ... attributedArray.count / 2 {
+    let tempArray = attributedArray[2 * i].componentsSeparatedByString("$")
+    for j in 0 ... tempArray.count / 2 {
+        let lastStringLength = (stringArray.last ?? "").characters.count
+        stringArray.append(tempArray[2 * j])
+        postionArray.append((postionArray.last ?? 0) + lastStringLength)
+        
+        if j * 2 + 1 < tempArray.count {
+            let lastStringLength = (stringArray.last ?? "").characters.count
+            DArray.append(stringArray.count)
+            stringArray.append(tempArray[2 * j + 1])
+            postionArray.append((postionArray.last ?? 0) + lastStringLength)
+            
+        }
+    }
+    if i * 2 + 1 < attributedArray.count {
+        let lastStringLength = (stringArray.last ?? "").characters.count
+        JArray.append(stringArray.count)
+        stringArray.append(attributedArray[2 * i + 1])
+        postionArray.append((postionArray.last ?? 0) + lastStringLength)
+    }
+}
+
+stringArray
+postionArray
+JArray
+DArray
+
+let fixedStaffText = NSMutableAttributedString(string: stringArray.reduce("", combine: {return $0 + $1}), attributes: [NSFontAttributeName : UIFont.systemFontOfSize(13.0, weight: -100)])
+
+for i in JArray {
+    fixedStaffText.addAttribute(NSForegroundColorAttributeName, value: UIColor.orangeColor(), range: NSRange(location: postionArray[i], length: stringArray[i].characters.count))
+}
+
+for i in DArray {
+    fixedStaffText.addAttribute(NSFontAttributeName , value: UIFont.systemFontOfSize(13.0, weight: 203), range: NSRange(location: postionArray[i], length: stringArray[i].characters.count))
+}
+
+
+fixedStaffText
+
