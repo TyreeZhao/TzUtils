@@ -1,6 +1,5 @@
 /**
  * Simulates enum types
- *
  * @type {string}
  * @private
  */
