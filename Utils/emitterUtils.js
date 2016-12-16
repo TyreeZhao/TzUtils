@@ -1,5 +1,4 @@
 import Emitter from 'es6-event-emitter'
-import { searchSliceIndexByName } from './sliceUtils'
 
 const searchSliceIndexByName = (slice = [], name) => {
   for (let i = 0; i < slice.length; i ++) {
