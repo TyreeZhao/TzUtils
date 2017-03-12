@@ -1,5 +1,4 @@
 
-
 /**
  * Check if the updatedAt field inside state is superior than now + duration
  *
