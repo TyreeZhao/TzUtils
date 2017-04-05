@@ -9,7 +9,7 @@ function truncString(s, n) {
 }
 
 /**
- *convert a string to decimalFormat 
+ *convert a string to decimalFormat
  *@param s {string}
  *@returns {string}
  */
@@ -62,6 +62,16 @@ export function priceStringInCent(price) {
     let value = price.replace(/\b(0+)/gi,"")
     return value + '00'
   }
+}
+
+/**
+ * regx func, filter regular number at most two decimal
+ * @param value {string} the given string
+ * @returns {boolean}
+ */
+export function regularDecimal(value) {
+  const regx = /^[0-9]+\.?[0-9]{0,2}?$/
+  return regx.test(value)
 }
 
 /**
