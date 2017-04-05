@@ -63,3 +63,22 @@ export function priceStringInCent(price) {
     return value + '00'
   }
 }
+
+/**
+ * give the string of date range thin body
+ * if range of date is contained in current year, return MM.DD
+ * @param startDate {string} YYYY.MM.DD
+ * @param endDate {string} YYYY.MM.DD
+ * @returns dateString {string} YYYY.MM.DD ~ YYYY.MM.DD
+ */
+export function thinDateRangeStr(startDate, endDate) {
+  const year = moment().format('YYYY')
+
+  let dateString = ''
+  if (year === endDate.substr(0, 4) && year === startDate.substr(0, 4)) {
+    startDate = startDate.slice(5, startDate.length)
+    endDate = endDate.slice(5, endDate.length)
+  }
+  dateString = `${startDate} ~ ${endDate}`
+  return dateString
+}
