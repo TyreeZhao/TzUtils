@@ -22,7 +22,10 @@ def search_Loop(arr):
                 i = i.replace('\\', '')
                 headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'} 
                 req2 = request.Request(i, headers = headers)
-                html_page = request.urlopen(req2)
+                try:
+                    html_page = request.urlopen(req2)
+                except:
+                    continue
                 if html_page.geturl().find('item.jd.com') > 0:
                     print('京东链接: ', html_page.geturl())
                 # if html_page.geturl().find('product.dangdang.com') > 0:
